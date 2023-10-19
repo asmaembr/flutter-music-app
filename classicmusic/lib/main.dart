@@ -86,7 +86,7 @@ class Controls extends StatelessWidget {
   final AudioPlayer audioPlayer;
 
   @override
-  Widget build(BuildContext contect) {
+  Widget build(BuildContext context) {
     return StreamBuilder<PlayerState>(
       stream: audioPlayer.playerStateStream,
       builder: (context, snapshot) {
