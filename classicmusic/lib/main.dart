@@ -57,8 +57,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '0',
           title: 'Arana',
           artist: 'Public Domain',
-          artUri: Uri.parse(
-              'https://unsplash.com/fr/photos/violon-marron-sur-textile-blanc-d9_2kPJBG0U'),
+          artUri: Uri.parse('asset:///assets/arts/0.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -67,8 +66,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '1',
           title: 'Big Easy',
           artist: 'Public Domain',
-          artUri: Uri.parse(
-              'https://unsplash.com/fr/photos/chitarra-elettrica-verde-acqua-e-marrone-phS37wg8cQg'),
+          artUri: Uri.parse('asset:///assets/arts/1.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -77,7 +75,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '2',
           title: 'Blue Monk',
           artist: 'Public Domain',
-          artUri: Uri.parse('https://unsplash.com/fr/photos/dBWvUqBoOU8'),
+          artUri: Uri.parse('asset:///assets/arts/2.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -86,7 +84,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '3',
           title: 'Coldness',
           artist: 'Public Domain',
-          artUri: Uri.parse('https://unsplash.com/fr/photos/Mx9vRuQpVkI'),
+          artUri: Uri.parse('asset:///assets/arts/3.jpg'),
+
         ),
       ),
       AudioSource.uri(
@@ -95,7 +94,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '4',
           title: 'If I Wait',
           artist: 'Public Domain',
-          artUri: Uri.parse('https://unsplash.com/fr/photos/F7W1QP62psQ'),
+          artUri: Uri.parse('asset:///assets/arts/4.jpg'),
+
         ),
       ),
       AudioSource.uri(
@@ -104,7 +104,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '5',
           title: 'Incredible',
           artist: 'Public Domain',
-          artUri: Uri.parse('https://unsplash.com/fr/photos/Nf3ko-k2TPI'),
+           artUri: Uri.parse('asset:///assets/arts/5.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -113,8 +113,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '6',
           title: 'Mladost Club',
           artist: 'Public Domain',
-          artUri: Uri.parse(
-              'https://unsplash.com/fr/photos/un-ordinateur-de-bureau-assis-sur-scene-avec-des-lumieres-de-scene-et-un-public-04aMmb0Ijw0'),
+          artUri: Uri.parse('asset:///assets/arts/6.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -123,8 +122,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '7',
           title: 'Mount Fuji',
           artist: 'Public Domain',
-          artUri: Uri.parse(
-              'https://unsplash.com/fr/photos/lotto-assortito-di-copertine-di-dischi-jazz-su-rack-v8M_wbLqcZU'),
+          artUri: Uri.parse('asset:///assets/arts/7.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -133,9 +131,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '8',
           title: 'nouvelle vague',
           artist: 'Public Domain',
-          artUri: Uri.parse(
-              'https://unsplash.com/fr/photos/une-personne-nageant-au-dessus-dun-recif-corallien-colore-9E9NsEiUGxg'),
-        ),
+          artUri: Uri.parse('asset:///assets/arts/8.jpg' ),
+      ),
       ),
       AudioSource.uri(
         Uri.parse('asset:///assets/audio/something.mp3'),
@@ -143,8 +140,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '9',
           title: 'Something',
           artist: 'Public Domain',
-          artUri: Uri.parse(
-              'https://unsplash.com/fr/photos/homme-en-veste-noire-assis-sur-une-chaise-rouge-d0y0wzmaXkU'),
+          artUri: Uri.parse('asset:///assets/arts/9.jpg' ),
         ),
       ),
       AudioSource.uri(
@@ -153,8 +149,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '10',
           title: 'The father The son and The Harold Rubin',
           artist: 'Public Domain',
-          artUri: Uri.parse(
-              'https://unsplash.com/fr/photos/silhouette-dun-homme-jouant-du-saxophone-au-coucher-du-soleil-iyJyiaR_vwc'),
+          artUri: Uri.parse('asset:///assets/arts/10.jpg' ),
         ),
       ),
       AudioSource.uri(
@@ -163,8 +158,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '11',
           title: 'The Years',
           artist: 'Public Domain',
-          artUri: Uri.parse(
-              'https://unsplash.com/fr/photos/raccolta-galleria-YDf2T-Uyq7U'),
+          artUri: Uri.parse('asset:///assets/arts/11.jpg' ),
         ),
       ),
     ],
