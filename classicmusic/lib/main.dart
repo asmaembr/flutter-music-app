@@ -1,5 +1,8 @@
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:rxdart/rxdart.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +23,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class PositionData {
+  const PositionData(
+    this.position,
+    this.bufferedPosition,
+    this.duration,
+  );
+  final Duration position;
+  final Duration bufferedPosition;
+  final Duration duration;
+}
+
 class AudioPlayerScreen extends StatefulWidget {
   const AudioPlayerScreen({super.key});
   @override
@@ -28,6 +42,18 @@ class AudioPlayerScreen extends StatefulWidget {
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   late AudioPlayer _audioPlayer;
+
+  Stream<PositionData> get _positionDataStream =>
+      Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
+        _audioPlayer.positionStream,
+        _audioPlayer.bufferedPositionStream,
+        _audioPlayer.durationStream,
+        (position, bufferePosition, duration) => PositionData(
+          position,
+          bufferePosition,
+          duration ?? Duration.zero,
+        ),
+      );
   @override
   void initState() {
     super.initState();
@@ -68,9 +94,33 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             colors: [Colors.white, Colors.cyan],
           ),
         ),
-        child: const Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [],
+          children: [
+            StreamBuilder<PositionData>(
+              stream: _positionDataStream,
+              builder: (context, snapshot) {
+                final positionData = snapshot.data;
+                return ProgressBar(
+                  barHeight: 8,
+                  baseBarColor: Colors.grey[700], 
+                  bufferedBarColor:Colors.grey,
+                  progressBarColor: Colors.black, 
+                  thumbColor: Colors.black, 
+                  timeLabelTextStyle: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600, 
+                  ),
+                  progress: positionData?.position ?? Duration.zero,
+                  buffered: positionData?.bufferedPosition ?? Duration.zero,
+                  total: positionData?.duration ?? Duration.zero,
+                  onSeek: _audioPlayer.seek,
+                );
+              },
+            ),
+            const SizedBox(height: 20),
+            Controls(audioPlayer: _audioPlayer),
+          ],
         ),
       ),
     );
