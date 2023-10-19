@@ -97,20 +97,20 @@ class Controls extends StatelessWidget {
           return IconButton(
             onPressed: audioPlayer.play,
             iconSize: 80,
-            color: Colors.cyanAccent,
+            color: Colors.black,
             icon: const Icon(Icons.play_arrow_rounded),
           );
         } else if (processingState != ProcessingState.completed) {
           return IconButton(
             onPressed: audioPlayer.pause,
             iconSize: 80,
-            color: Colors.cyanAccent,
-            icon: const Icon(Icons.pause_circle_rounded),
+            color: Colors.black,
+            icon: const Icon(Icons.pause_rounded),
           );
         }
         return const Icon(
           Icons.play_arrow_rounded,
-          color: Colors.cyanAccent,
+          color: Colors.black,
           size: 80,
         );
       },
