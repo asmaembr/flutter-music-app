@@ -47,7 +47,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   final _playlist = ConcatenatingAudioSource(
     children: [
       AudioSource.uri(
-        Uri.parse('assets/audio/Arana.mp3'),
+        Uri.parse('asset:///assets/audio/Arana.mp3'),
         tag: MediaItem(
           id: '0',
           title: 'Arana',
@@ -57,7 +57,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('assets/audio/Big_Easy.mp3'),
+        Uri.parse('asset:///assets/audio/Big_Easy.mp3'),
         tag: MediaItem(
           id: '1',
           title: 'Big Easy',
@@ -67,7 +67,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('assets/audio/Blue_Monk.mp3'),
+        Uri.parse('asset:///assets/audio/Blue_Monk.mp3'),
         tag: MediaItem(
           id: '2',
           title: 'Blue Monk',
@@ -76,7 +76,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('assets/audio/Coldness.mp3'),
+        Uri.parse('asset:///assets/audio/Coldness.mp3'),
         tag: MediaItem(
           id: '3',
           title: 'Coldness',
@@ -85,7 +85,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('assets/audio/If_I_Wait.mp3'),
+        Uri.parse('asset:///assets/audio/If_I_Wait.mp3'),
         tag: MediaItem(
           id: '4',
           title: 'If I Wait',
@@ -94,7 +94,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('assets/audio/Incredible.mp3'),
+        Uri.parse('asset:///assets/audio/Incredible.mp3'),
         tag: MediaItem(
           id: '5',
           title: 'Incredible',
@@ -103,7 +103,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('assets/audio/Mladost_Club.mp3'),
+        Uri.parse('asset:///assets/audio/Mladost_Club.mp3'),
         tag: MediaItem(
           id: '6',
           title: 'Mladost Club',
@@ -113,7 +113,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('assets/audio/Mount_Fuji.mp3'),
+        Uri.parse('asset:///assets/audio/Mount_Fuji.mp3'),
         tag: MediaItem(
           id: '7',
           title: 'Mount Fuji',
@@ -123,7 +123,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('assets/audio/nouvelle_vague.mp3'),
+        Uri.parse('asset:///assets/audio/nouvelle_vague.mp3'),
         tag: MediaItem(
           id: '8',
           title: 'nouvelle vague',
@@ -133,7 +133,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('assets/audio/something.mp3'),
+        Uri.parse('asset:///assets/audio/something.mp3'),
         tag: MediaItem(
           id: '9',
           title: 'Something',
@@ -143,7 +143,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('assets/audio/The_Harold_Rubin.mp3'),
+        Uri.parse('asset:///assets/audio/The_Harold_Rubin.mp3'),
         tag: MediaItem(
           id: '10',
           title: 'The father The son and The Harold Rubin',
@@ -153,7 +153,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('assets/audio/The_Years.mp3'),
+        Uri.parse('asset:///assets/audio/The_Years.mp3'),
         tag: MediaItem(
           id: '11',
           title: 'The Years',
