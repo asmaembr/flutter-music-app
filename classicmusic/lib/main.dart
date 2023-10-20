@@ -47,8 +47,24 @@ class AudioPlayerScreen extends StatefulWidget {
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   late AudioPlayer _audioPlayer;
+  bool isShuffled = false;
 
-  final _playlist = ConcatenatingAudioSource(
+void toggleShuffle() {
+  setState(() {
+    isShuffled = !isShuffled;
+    if (isShuffled) {
+      // Shuffle the playlist
+    final shuffledChildren = List<AudioSource>.from(_playlist.children)..shuffle();
+      _playlist = ConcatenatingAudioSource(children: shuffledChildren);
+    } else {
+      // Turn off shuffle mode by reassigning the original playlist
+      _playlist = ConcatenatingAudioSource(children: _playlist.children);
+    }
+  });
+}
+
+
+   late  ConcatenatingAudioSource _playlist= ConcatenatingAudioSource(
     children: [
       AudioSource.uri(
         Uri.parse('asset:///assets/audio/Arana.mp3'),
@@ -259,7 +275,10 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
               },
             ),
             const SizedBox(height: 20),
-            Controls(audioPlayer: _audioPlayer),
+            Controls(
+              audioPlayer: _audioPlayer, 
+              toggleShuffle: toggleShuffle,
+              isShuffled: isShuffled,),
           ],
         ),
       ),
@@ -331,9 +350,13 @@ class Controls extends StatelessWidget {
   const Controls({
     super.key,
     required this.audioPlayer,
+    required this.toggleShuffle,
+    required this.isShuffled,
   });
 
   final AudioPlayer audioPlayer;
+  final void Function() toggleShuffle;
+  final bool isShuffled;
 
   @override
   Widget build(BuildContext context) {
@@ -379,6 +402,13 @@ class Controls extends StatelessWidget {
           iconSize: 60,
           color: Colors.black,
           icon: const Icon(Icons.skip_next_rounded),
+        ),
+
+        IconButton(
+          onPressed: toggleShuffle, // Call the toggleShuffle function
+          iconSize: 40,
+          color: isShuffled ? Colors.blueGrey : Colors.black, // Change color based on shuffle state
+          icon: const Icon(Icons.shuffle_rounded),
         ),
       ],
     );
