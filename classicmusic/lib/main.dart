@@ -4,12 +4,12 @@ import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:rxdart/rxdart.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   await JustAudioBackground.init(
     androidNotificationChannelId: 'come.ryanheise.bg_demo.channel.audio',
     androidNotificationChannelName: 'Audio playback',
     androidNotificationOngoing: true,
-    );
+  );
   runApp(const MyApp());
 }
 
@@ -56,7 +56,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '0',
           title: 'Arana',
           artist: 'Public Domain',
-          artUri: Uri.parse('asset:///assets/arts/0.jpg'),
+          artUri: Uri.parse('assets/arts/0.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -65,7 +65,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '1',
           title: 'Big Easy',
           artist: 'Public Domain',
-          artUri: Uri.parse('asset:///assets/arts/1.jpg'),
+          artUri: Uri.parse('assets/arts/1.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -74,7 +74,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '2',
           title: 'Blue Monk',
           artist: 'Public Domain',
-          artUri: Uri.parse('asset:///assets/arts/2.jpg'),
+          artUri: Uri.parse('assets/arts/2.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -83,8 +83,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '3',
           title: 'Coldness',
           artist: 'Public Domain',
-          artUri: Uri.parse('asset:///assets/arts/3.jpg'),
-
+          artUri: Uri.parse('assets/arts/3.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -93,8 +92,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '4',
           title: 'If I Wait',
           artist: 'Public Domain',
-          artUri: Uri.parse('asset:///assets/arts/4.jpg'),
-
+          artUri: Uri.parse('assets/arts/4.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -103,7 +101,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '5',
           title: 'Incredible',
           artist: 'Public Domain',
-           artUri: Uri.parse('asset:///assets/arts/5.jpg'),
+          artUri: Uri.parse('assets/arts/5.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -112,7 +110,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '6',
           title: 'Mladost Club',
           artist: 'Public Domain',
-          artUri: Uri.parse('asset:///assets/arts/6.jpg'),
+          artUri: Uri.parse('assets/arts/6.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -121,7 +119,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '7',
           title: 'Mount Fuji',
           artist: 'Public Domain',
-          artUri: Uri.parse('asset:///assets/arts/7.jpg'),
+          artUri: Uri.parse('assets/arts/7.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -130,8 +128,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '8',
           title: 'nouvelle vague',
           artist: 'Public Domain',
-          artUri: Uri.parse('asset:///assets/arts/8.jpg' ),
-      ),
+          artUri: Uri.parse('assets/arts/8.jpg'),
+        ),
       ),
       AudioSource.uri(
         Uri.parse('asset:///assets/audio/something.mp3'),
@@ -139,7 +137,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '9',
           title: 'Something',
           artist: 'Public Domain',
-          artUri: Uri.parse('asset:///assets/arts/9.jpg' ),
+          artUri: Uri.parse('assets/arts/9.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -148,7 +146,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '10',
           title: 'The father The son and The Harold Rubin',
           artist: 'Public Domain',
-          artUri: Uri.parse('asset:///assets/arts/10.jpg' ),
+          artUri: Uri.parse('assets/arts/10.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -157,7 +155,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           id: '11',
           title: 'The Years',
           artist: 'Public Domain',
-          artUri: Uri.parse('asset:///assets/arts/11.jpg' ),
+          artUri: Uri.parse('assets/arts/11.jpg'),
         ),
       ),
     ],
@@ -339,49 +337,50 @@ class Controls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      IconButton(
-        onPressed: audioPlayer.seekToPrevious, 
-        iconSize: 60,
-        color: Colors.black, 
-        icon: const Icon(Icons.skip_previous_rounded),
-        ),
-    StreamBuilder<PlayerState>(
-      stream: audioPlayer.playerStateStream,
-      builder: (context, snapshot) {
-        final playerState = snapshot.data;
-        final processingState = playerState?.processingState;
-        final playing = playerState?.playing;
-        if (!(playing ?? false)) {
-          return IconButton(
-            onPressed: audioPlayer.play,
-            iconSize: 80,
-            color: Colors.black,
-            icon: const Icon(Icons.play_arrow_rounded),
-          );
-        } else if (processingState != ProcessingState.completed) {
-          return IconButton(
-            onPressed: audioPlayer.pause,
-            iconSize: 80,
-            color: Colors.black,
-            icon: const Icon(Icons.pause_rounded),
-          );
-        }
-        return const Icon(
-          Icons.play_arrow_rounded,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          onPressed: audioPlayer.seekToPrevious,
+          iconSize: 60,
           color: Colors.black,
-          size: 80,
-        );
-      },
-    ),
-    IconButton(
-      onPressed: audioPlayer.seekToNext,
-      iconSize: 60, 
-      color: Colors.black, 
-      icon: const Icon(Icons.skip_next_rounded),
-      ),
-    ],
+          icon: const Icon(Icons.skip_previous_rounded),
+        ),
+        StreamBuilder<PlayerState>(
+          stream: audioPlayer.playerStateStream,
+          builder: (context, snapshot) {
+            final playerState = snapshot.data;
+            final processingState = playerState?.processingState;
+            final playing = playerState?.playing;
+            if (!(playing ?? false)) {
+              return IconButton(
+                onPressed: audioPlayer.play,
+                iconSize: 80,
+                color: Colors.black,
+                icon: const Icon(Icons.play_arrow_rounded),
+              );
+            } else if (processingState != ProcessingState.completed) {
+              return IconButton(
+                onPressed: audioPlayer.pause,
+                iconSize: 80,
+                color: Colors.black,
+                icon: const Icon(Icons.pause_rounded),
+              );
+            }
+            return const Icon(
+              Icons.play_arrow_rounded,
+              color: Colors.black,
+              size: 80,
+            );
+          },
+        ),
+        IconButton(
+          onPressed: audioPlayer.seekToNext,
+          iconSize: 60,
+          color: Colors.black,
+          icon: const Icon(Icons.skip_next_rounded),
+        ),
+      ],
     );
   }
 }
