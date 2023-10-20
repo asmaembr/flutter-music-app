@@ -26,3 +26,4 @@ flutter:
   assets: 
     - assets/audio/
     - assets/arts/
+    - assets/arts/icon.jpg
