@@ -1,21 +1,23 @@
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:rxdart/rxdart.dart';
 
-void main() async {
+Future<void> main() async{
   await JustAudioBackground.init(
     androidNotificationChannelId: 'come.ryanheise.bg_demo.channel.audio',
     androidNotificationChannelName: 'Audio playback',
     androidNotificationOngoing: true,
-  );
+    );
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,18 +41,17 @@ class PositionData {
 }
 
 class AudioPlayerScreen extends StatefulWidget {
-  const AudioPlayerScreen({Key? key});
+  const AudioPlayerScreen({super.key});
   @override
   State<AudioPlayerScreen> createState() => _AudioPlayerScreenState();
 }
-
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   late AudioPlayer _audioPlayer;
 
   final _playlist = ConcatenatingAudioSource(
     children: [
-  AudioSource.uri(
+      AudioSource.uri(
         Uri.parse('asset:///assets/audio/Arana.mp3'),
         tag: MediaItem(
           id: '0',
@@ -159,7 +160,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           artist: 'Public Domain',
           artUri: Uri.parse('asset:///assets/arts/11.jpg' ),
         ),
-      ),// ... Add other audio sources here ...
+      ),
     ],
   );
 
@@ -168,13 +169,12 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         _audioPlayer.positionStream,
         _audioPlayer.bufferedPositionStream,
         _audioPlayer.durationStream,
-        (position, bufferedPosition, duration) => PositionData(
+        (position, bufferePosition, duration) => PositionData(
           position,
-          bufferedPosition,
+          bufferePosition,
           duration ?? Duration.zero,
         ),
       );
-
   @override
   void initState() {
     super.initState();
@@ -272,11 +272,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
 class MediaMetadata extends StatelessWidget {
   const MediaMetadata({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.artist,
-  }) : super(key: key);
+  });
   final String imageUrl;
   final String title;
   final String artist;
@@ -298,8 +298,8 @@ class MediaMetadata extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              imageUrl,
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
               height: 300,
               width: 300,
               fit: BoxFit.cover,
@@ -332,58 +332,57 @@ class MediaMetadata extends StatelessWidget {
 
 class Controls extends StatelessWidget {
   const Controls({
-    Key? key,
+    super.key,
     required this.audioPlayer,
-  }) : super(key: key);
+  });
 
   final AudioPlayer audioPlayer;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        IconButton(
-          onPressed: audioPlayer.seekToPrevious,
-          iconSize: 60,
+    return Row(mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      IconButton(
+        onPressed: audioPlayer.seekToPrevious, 
+        iconSize: 60,
+        color: Colors.black, 
+        icon: const Icon(Icons.skip_previous_rounded),
+        ),
+    StreamBuilder<PlayerState>(
+      stream: audioPlayer.playerStateStream,
+      builder: (context, snapshot) {
+        final playerState = snapshot.data;
+        final processingState = playerState?.processingState;
+        final playing = playerState?.playing;
+        if (!(playing ?? false)) {
+          return IconButton(
+            onPressed: audioPlayer.play,
+            iconSize: 80,
+            color: Colors.black,
+            icon: const Icon(Icons.play_arrow_rounded),
+          );
+        } else if (processingState != ProcessingState.completed) {
+          return IconButton(
+            onPressed: audioPlayer.pause,
+            iconSize: 80,
+            color: Colors.black,
+            icon: const Icon(Icons.pause_rounded),
+          );
+        }
+        return const Icon(
+          Icons.play_arrow_rounded,
           color: Colors.black,
-          icon: const Icon(Icons.skip_previous_rounded),
-        ),
-        StreamBuilder<PlayerState>(
-          stream: audioPlayer.playerStateStream,
-          builder: (context, snapshot) {
-            final playerState = snapshot.data;
-            final processingState = playerState?.processingState;
-            final playing = playerState?.playing;
-            if (!(playing ?? false)) {
-              return IconButton(
-                onPressed: audioPlayer.play,
-                iconSize: 80,
-                color: Colors.black,
-                icon: const Icon(Icons.play_arrow_rounded),
-              );
-            } else if (processingState != ProcessingState.completed) {
-              return IconButton(
-                onPressed: audioPlayer.pause,
-                iconSize: 80,
-                color: Colors.black,
-                icon: const Icon(Icons.pause_rounded),
-              );
-            }
-            return const Icon(
-              Icons.play_arrow_rounded,
-              color: Colors.black,
-              size: 80,
-            );
-          },
-        ),
-        IconButton(
-          onPressed: audioPlayer.seekToNext,
-          iconSize: 60,
-          color: Colors.black,
-          icon: const Icon(Icons.skip_next_rounded),
-        ),
-      ],
+          size: 80,
+        );
+      },
+    ),
+    IconButton(
+      onPressed: audioPlayer.seekToNext,
+      iconSize: 60, 
+      color: Colors.black, 
+      icon: const Icon(Icons.skip_next_rounded),
+      ),
+    ],
     );
   }
 }
