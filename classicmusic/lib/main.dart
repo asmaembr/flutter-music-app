@@ -1,5 +1,4 @@
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -233,7 +232,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                 }
                 final metadata = state!.currentSource!.tag as MediaItem;
                 return MediaMetadata(
-                  imageUrl: metadata.artUri.toString(),
+                  assetPath: metadata.artUri.toString(),
                   artist: metadata.artist ?? '',
                   title: metadata.title,
                 );
@@ -273,11 +272,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 class MediaMetadata extends StatelessWidget {
   const MediaMetadata({
     super.key,
-    required this.imageUrl,
+    required this.assetPath,
     required this.title,
     required this.artist,
   });
-  final String imageUrl;
+  final String assetPath;
   final String title;
   final String artist;
 
@@ -298,8 +297,8 @@ class MediaMetadata extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: CachedNetworkImage(
-              imageUrl: imageUrl,
+            child: Image.asset(
+              assetPath,
               height: 300,
               width: 300,
               fit: BoxFit.cover,
