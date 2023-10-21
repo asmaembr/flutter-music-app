@@ -125,15 +125,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           artUri: Uri.parse('assets/arts/7.jpg'),
         ),
       ),
-      AudioSource.uri(
-        Uri.parse('asset://arts/Night-in-Venice.mp3'),
-        tag: MediaItem(
-          id: '8',
-          title: 'Night in Venice',
-          artist: 'Public Domain',
-          artUri: Uri.parse('assets/arts/8.jpg'),
-        ),
-      ),
+
       AudioSource.uri(
         Uri.parse('asset:///assets/audio/something.mp3'),
         tag: MediaItem(
@@ -170,15 +162,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           artUri: Uri.parse('assets/arts/12.jpg'),
         ),
       ),
-      AudioSource.uri(
-        Uri.parse('asset:///assets/audio/Christian-Scott-aTunde-Adjuah.mp3'),
-        tag: MediaItem(
-          id: '13',
-          title: 'aTunde Adjuah',
-          artist: 'Christian Scott',
-          artUri: Uri.parse('assets/arts/13.jpg'),
-        ),
-      ),
+
       AudioSource.uri(
         Uri.parse('asset:///assets/audio/cooking.mp3'),
         tag: MediaItem(
