@@ -52,15 +52,16 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
   final ConcatenatingAudioSource _playlist = ConcatenatingAudioSource(
     children: [
-      AudioSource.uri(
-        Uri.parse('asset:///assets/audio/Arana.mp3'),
+            AudioSource.uri(
+        Uri.parse('asset:///assets/audio/Incredible.mp3'),
         tag: MediaItem(
-          id: '5',
-          title: 'Arana',
+          id: '0',
+          title: 'Incredible',
           artist: 'Public Domain',
-          artUri: Uri.parse('assets/arts/0.jpg'),
+          artUri: Uri.parse('assets/arts/5.jpg'),
         ),
       ),
+     
       AudioSource.uri(
         Uri.parse('asset:///assets/audio/Big_Easy.mp3'),
         tag: MediaItem(
@@ -97,13 +98,13 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           artUri: Uri.parse('assets/arts/4.jpg'),
         ),
       ),
-      AudioSource.uri(
-        Uri.parse('asset:///assets/audio/Incredible.mp3'),
+ AudioSource.uri(
+        Uri.parse('asset:///assets/audio/Arana.mp3'),
         tag: MediaItem(
-          id: '0',
-          title: 'Incredible',
+          id: '5',
+          title: 'Arana',
           artist: 'Public Domain',
-          artUri: Uri.parse('assets/arts/5.jpg'),
+          artUri: Uri.parse('assets/arts/0.jpg'),
         ),
       ),
       AudioSource.uri(
@@ -125,7 +126,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('asset://arts/Night-in-Venice.jpg'),
+        Uri.parse('asset://arts/Night-in-Venice.mp3'),
         tag: MediaItem(
           id: '8',
           title: 'Night in Venice',
@@ -182,7 +183,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         Uri.parse('asset:///assets/audio/cooking.mp3'),
         tag: MediaItem(
           id: '14',
-          title: 'The Years',
+          title: 'Cooking',
           artist: 'Public Domain',
           artUri: Uri.parse('assets/arts/14.jpg'),
         ),
@@ -192,7 +193,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
         tag: MediaItem(
           id: '15',
           title: 'Bossa nova',
-          artist: 'OsamuFukuzawa',
+          artist: 'Osamu Fukuzawa',
           artUri: Uri.parse('assets/arts/15.jpg'),
         ),
       ),
