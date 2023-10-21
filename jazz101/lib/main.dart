@@ -4,6 +4,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:rxdart/rxdart.dart';
 
+
 Future<void> main() async {
   await JustAudioBackground.init(
     androidNotificationChannelId: 'come.ryanheise.bg_demo.channel.audio',
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My Music App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.indigo),
+      theme: ThemeData(primarySwatch: Colors.amber),
       home: const AudioPlayerScreen(),
     );
   }
@@ -47,24 +48,9 @@ class AudioPlayerScreen extends StatefulWidget {
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   late AudioPlayer _audioPlayer;
-  bool isShuffled = false;
 
-  void toggleShuffle() {
-    setState(() {
-      isShuffled = !isShuffled;
-      if (isShuffled) {
-        // Shuffle the playlist
-        final shuffledChildren = List<AudioSource>.from(_playlist.children)
-          ..shuffle();
-        _playlist = ConcatenatingAudioSource(children: shuffledChildren);
-      } else {
-        // Turn off shuffle mode by reassigning the original playlist
-        _playlist = ConcatenatingAudioSource(children: _playlist.children);
-      }
-    });
-  }
 
-  late ConcatenatingAudioSource _playlist = ConcatenatingAudioSource(
+  final ConcatenatingAudioSource _playlist = ConcatenatingAudioSource(
     children: [
       AudioSource.uri(
         Uri.parse('asset:///assets/audio/Arana.mp3'),
@@ -267,7 +253,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0x0069B4B2),Color(0x00F13F78)],
+            colors: [Colors.white,Colors.amber],
           ),
         ),
         child: Column(
@@ -295,12 +281,12 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                 final positionData = snapshot.data;
                 return ProgressBar(
                   barHeight: 8,
-                  baseBarColor: const Color.fromRGBO(105, 180, 178, 0),
-                  bufferedBarColor:const Color.fromARGB(0, 81, 138, 137),
-                  progressBarColor: Colors.indigo,
-                  thumbColor: Colors.indigo,
+                  baseBarColor:  Colors.grey[500],
+                  bufferedBarColor: Colors.grey[600],
+                  progressBarColor: Colors.black,
+                  thumbColor: Colors.black,
                   timeLabelTextStyle: const TextStyle(
-                    color: Colors.indigo,
+                    color: Colors.black,
                     fontWeight: FontWeight.w600,
                   ),
                   progress: positionData?.position ?? Duration.zero,
@@ -312,9 +298,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
             ),
             const SizedBox(height: 20),
             Controls(
-              audioPlayer: _audioPlayer,
-              toggleShuffle: toggleShuffle,
-              isShuffled: isShuffled,
+              audioPlayer: _audioPlayer
             ),
           ],
         ),
@@ -342,7 +326,7 @@ class MediaMetadata extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: const [
               BoxShadow(
-                color: Colors.indigo,
+                color: Colors.grey,
                 offset: Offset(2, 4),
                 blurRadius: 4,
               ),
@@ -363,7 +347,7 @@ class MediaMetadata extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
@@ -373,7 +357,7 @@ class MediaMetadata extends StatelessWidget {
         Text(
           artist,
           style: const TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 20,
           ),
           textAlign: TextAlign.center,
@@ -387,13 +371,10 @@ class Controls extends StatelessWidget {
   const Controls({
     super.key,
     required this.audioPlayer,
-    required this.toggleShuffle,
-    required this.isShuffled,
   });
 
   final AudioPlayer audioPlayer;
-  final void Function() toggleShuffle;
-  final bool isShuffled;
+
 
   @override
   Widget build(BuildContext context) {
@@ -403,7 +384,7 @@ class Controls extends StatelessWidget {
         IconButton(
           onPressed: audioPlayer.seekToPrevious,
           iconSize: 60,
-          color: Colors.indigo,
+          color: Colors.black,
           icon: const Icon(Icons.skip_previous_rounded),
         ),
         StreamBuilder<PlayerState>(
@@ -416,20 +397,20 @@ class Controls extends StatelessWidget {
               return IconButton(
                 onPressed: audioPlayer.play,
                 iconSize: 80,
-                color: Colors.indigo,
+                color: Colors.black,
                 icon: const Icon(Icons.play_arrow_rounded),
               );
             } else if (processingState != ProcessingState.completed) {
               return IconButton(
                 onPressed: audioPlayer.pause,
                 iconSize: 80,
-                color: Colors.indigo,
+                color: Colors.black,
                 icon: const Icon(Icons.pause_rounded),
               );
             }
             return const Icon(
               Icons.play_arrow_rounded,
-              color: Colors.indigo,
+              color: Colors.black,
               size: 80,
             );
           },
@@ -437,17 +418,10 @@ class Controls extends StatelessWidget {
         IconButton(
           onPressed: audioPlayer.seekToNext,
           iconSize: 60,
-          color: Colors.indigo,
+          color: Colors.black,
           icon: const Icon(Icons.skip_next_rounded),
         ),
-        IconButton(
-          onPressed: toggleShuffle, // Call the toggleShuffle function
-          iconSize: 40,
-          color: isShuffled
-              ? const Color.fromRGBO(105, 180, 178, 0.059)
-              : Colors.indigo, // Change color based on shuffle state
-          icon: const Icon(Icons.shuffle_rounded),
-        ),
+       
       ],
     );
   }
