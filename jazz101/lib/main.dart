@@ -55,7 +55,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       AudioSource.uri(
         Uri.parse('asset:///assets/audio/Arana.mp3'),
         tag: MediaItem(
-          id: '0',
+          id: '5',
           title: 'Arana',
           artist: 'Public Domain',
           artUri: Uri.parse('assets/arts/0.jpg'),
@@ -100,7 +100,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
       AudioSource.uri(
         Uri.parse('asset:///assets/audio/Incredible.mp3'),
         tag: MediaItem(
-          id: '5',
+          id: '0',
           title: 'Incredible',
           artist: 'Public Domain',
           artUri: Uri.parse('assets/arts/5.jpg'),
