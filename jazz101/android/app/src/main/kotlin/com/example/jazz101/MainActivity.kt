@@ -1,4 +1,4 @@
-package com.example.classicmusic
+package com.example.jazz101
 
 import io.flutter.embedding.android.FlutterActivity
 

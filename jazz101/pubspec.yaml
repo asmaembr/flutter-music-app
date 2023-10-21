@@ -1,7 +1,8 @@
-name: classicmusic
+name: jazz101
 description: A Jazz and a classic music player
 publish_to: 'none'
 version: 1.0.0
+author: Asmae Moubarriz
 
 environment:
   sdk: '>=3.1.4 <4.0.0'
@@ -26,4 +27,5 @@ flutter:
   assets: 
     - assets/audio/
     - assets/arts/
-    - assets/arts/icon.jpg
+    - assets/arts/ic_launcher.png
+    
