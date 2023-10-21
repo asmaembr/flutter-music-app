@@ -52,7 +52,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
   final ConcatenatingAudioSource _playlist = ConcatenatingAudioSource(
     children: [
-            AudioSource.uri(
+        AudioSource.uri(
         Uri.parse('asset:///assets/audio/Incredible.mp3'),
         tag: MediaItem(
           id: '0',
@@ -98,7 +98,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           artUri: Uri.parse('assets/arts/4.jpg'),
         ),
       ),
- AudioSource.uri(
+  AudioSource.uri(
         Uri.parse('asset:///assets/audio/Arana.mp3'),
         tag: MediaItem(
           id: '5',
