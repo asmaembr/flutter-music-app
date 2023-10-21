@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My Music App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.brown),
+      theme: ThemeData(primarySwatch: Colors.indigo),
       home: const AudioPlayerScreen(),
     );
   }
@@ -49,22 +49,22 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   late AudioPlayer _audioPlayer;
   bool isShuffled = false;
 
-void toggleShuffle() {
-  setState(() {
-    isShuffled = !isShuffled;
-    if (isShuffled) {
-      // Shuffle the playlist
-    final shuffledChildren = List<AudioSource>.from(_playlist.children)..shuffle();
-      _playlist = ConcatenatingAudioSource(children: shuffledChildren);
-    } else {
-      // Turn off shuffle mode by reassigning the original playlist
-      _playlist = ConcatenatingAudioSource(children: _playlist.children);
-    }
-  });
-}
+  void toggleShuffle() {
+    setState(() {
+      isShuffled = !isShuffled;
+      if (isShuffled) {
+        // Shuffle the playlist
+        final shuffledChildren = List<AudioSource>.from(_playlist.children)
+          ..shuffle();
+        _playlist = ConcatenatingAudioSource(children: shuffledChildren);
+      } else {
+        // Turn off shuffle mode by reassigning the original playlist
+        _playlist = ConcatenatingAudioSource(children: _playlist.children);
+      }
+    });
+  }
 
-
-   late  ConcatenatingAudioSource _playlist= ConcatenatingAudioSource(
+  late ConcatenatingAudioSource _playlist = ConcatenatingAudioSource(
     children: [
       AudioSource.uri(
         Uri.parse('asset:///assets/audio/Arana.mp3'),
@@ -139,10 +139,10 @@ void toggleShuffle() {
         ),
       ),
       AudioSource.uri(
-        Uri.parse('asset:///assets/audio/nouvelle_vague.mp3'),
+        Uri.parse('asset://arts/Night-in-Venice.jpg'),
         tag: MediaItem(
           id: '8',
-          title: 'nouvelle vague',
+          title: 'Night in Venice',
           artist: 'Public Domain',
           artUri: Uri.parse('assets/arts/8.jpg'),
         ),
@@ -172,6 +172,42 @@ void toggleShuffle() {
           title: 'The Years',
           artist: 'Public Domain',
           artUri: Uri.parse('assets/arts/11.jpg'),
+        ),
+      ),
+      AudioSource.uri(
+        Uri.parse('asset:///assets/audio/John-Bartmann-A-Kwela-Fella.mp3'),
+        tag: MediaItem(
+          id: '12',
+          title: 'A Kwela Fella',
+          artist: 'John Bartmann',
+          artUri: Uri.parse('assets/arts/12.jpg'),
+        ),
+      ),
+      AudioSource.uri(
+        Uri.parse('asset:///assets/audio/Christian-Scott-aTunde-Adjuah.mp3'),
+        tag: MediaItem(
+          id: '13',
+          title: 'aTunde Adjuah',
+          artist: 'Christian Scott',
+          artUri: Uri.parse('assets/arts/13.jpg'),
+        ),
+      ),
+      AudioSource.uri(
+        Uri.parse('asset:///assets/audio/cooking.mp3'),
+        tag: MediaItem(
+          id: '14',
+          title: 'The Years',
+          artist: 'Public Domain',
+          artUri: Uri.parse('assets/arts/14.jpg'),
+        ),
+      ),
+      AudioSource.uri(
+        Uri.parse('asset:///assets/audio/Osamu-Fukuzawa-Bossa-nova.mp3'),
+        tag: MediaItem(
+          id: '15',
+          title: 'Bossa nova',
+          artist: 'OsamuFukuzawa',
+          artUri: Uri.parse('assets/arts/15.jpg'),
         ),
       ),
     ],
@@ -231,7 +267,7 @@ void toggleShuffle() {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.white, Colors.cyan],
+            colors: [Color(0x0069B4B2),Color(0x00F13F78)],
           ),
         ),
         child: Column(
@@ -259,12 +295,12 @@ void toggleShuffle() {
                 final positionData = snapshot.data;
                 return ProgressBar(
                   barHeight: 8,
-                  baseBarColor: Colors.grey[700],
-                  bufferedBarColor: Colors.grey,
-                  progressBarColor: Colors.black,
-                  thumbColor: Colors.black,
+                  baseBarColor: const Color.fromRGBO(105, 180, 178, 0),
+                  bufferedBarColor:const Color.fromARGB(0, 81, 138, 137),
+                  progressBarColor: Colors.indigo,
+                  thumbColor: Colors.indigo,
                   timeLabelTextStyle: const TextStyle(
-                    color: Colors.black,
+                    color: Colors.indigo,
                     fontWeight: FontWeight.w600,
                   ),
                   progress: positionData?.position ?? Duration.zero,
@@ -276,9 +312,10 @@ void toggleShuffle() {
             ),
             const SizedBox(height: 20),
             Controls(
-              audioPlayer: _audioPlayer, 
+              audioPlayer: _audioPlayer,
               toggleShuffle: toggleShuffle,
-              isShuffled: isShuffled,),
+              isShuffled: isShuffled,
+            ),
           ],
         ),
       ),
@@ -305,7 +342,7 @@ class MediaMetadata extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: const [
               BoxShadow(
-                color: Colors.black12,
+                color: Colors.indigo,
                 offset: Offset(2, 4),
                 blurRadius: 4,
               ),
@@ -366,7 +403,7 @@ class Controls extends StatelessWidget {
         IconButton(
           onPressed: audioPlayer.seekToPrevious,
           iconSize: 60,
-          color: Colors.black,
+          color: Colors.indigo,
           icon: const Icon(Icons.skip_previous_rounded),
         ),
         StreamBuilder<PlayerState>(
@@ -379,20 +416,20 @@ class Controls extends StatelessWidget {
               return IconButton(
                 onPressed: audioPlayer.play,
                 iconSize: 80,
-                color: Colors.black,
+                color: Colors.indigo,
                 icon: const Icon(Icons.play_arrow_rounded),
               );
             } else if (processingState != ProcessingState.completed) {
               return IconButton(
                 onPressed: audioPlayer.pause,
                 iconSize: 80,
-                color: Colors.black,
+                color: Colors.indigo,
                 icon: const Icon(Icons.pause_rounded),
               );
             }
             return const Icon(
               Icons.play_arrow_rounded,
-              color: Colors.black,
+              color: Colors.indigo,
               size: 80,
             );
           },
@@ -400,14 +437,15 @@ class Controls extends StatelessWidget {
         IconButton(
           onPressed: audioPlayer.seekToNext,
           iconSize: 60,
-          color: Colors.black,
+          color: Colors.indigo,
           icon: const Icon(Icons.skip_next_rounded),
         ),
-
         IconButton(
           onPressed: toggleShuffle, // Call the toggleShuffle function
           iconSize: 40,
-          color: isShuffled ? Colors.blueGrey : Colors.black, // Change color based on shuffle state
+          color: isShuffled
+              ? const Color.fromRGBO(105, 180, 178, 0.059)
+              : Colors.indigo, // Change color based on shuffle state
           icon: const Icon(Icons.shuffle_rounded),
         ),
       ],
